@@ -20,7 +20,7 @@ namespace lab_1_GUI
 	/// </summary>
 	public partial class MainForm : Form
 	{
-		protected int iRowCount = 0;
+		protected int iRowCount;
 		
 		public MainForm()
 		{
@@ -34,10 +34,12 @@ namespace lab_1_GUI
 		
 		// Inserts headers of the table
 		void ConstructPanel(){
+			panel.Controls.Clear();
+			
 			Font HeadersFont = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			panel.Controls.Add(new Label() { Text = "Int", Font = HeadersFont}, 0, 0);
 			panel.Controls.Add(new Label() { Text = "Char[255]", Font = HeadersFont }, 1, 0);
-			panel.Controls.Add(new Label() { Text = "Float", Font = HeadersFont }, 2, 0);			
+			panel.Controls.Add(new Label() { Text = "Float", Font = HeadersFont }, 2, 0);	
 		}
 		
 		void InsertRow(string cell1 = "hey", string cell2 = "ho", string cell3 = "yo-yo"){
@@ -46,13 +48,15 @@ namespace lab_1_GUI
 				panel.Controls.Add(new TextBox() { Text = cell1 }, 0, panel.RowCount-1);
 				panel.Controls.Add(new TextBox() { Text = cell2, Width = 300}, 1, panel.RowCount-1);
 				panel.Controls.Add(new TextBox() { Text = cell3 }, 2, panel.RowCount-1);
+				
+				iRowCount++;
 			}
 		
 		void but_start_Click(object sender, EventArgs e)
 		{
-			// Correctify design
-			InitializeComponent();
 			ConstructPanel();
+			
+			iRowCount = 0;
 			
 			// Reading data from file through usage of lab_1.exe
 			string data_filename = tb_filename.Text;
@@ -75,11 +79,10 @@ namespace lab_1_GUI
             	if (s.IndexOf(sep[0]) > 0){
             		string[] str = s.Split(sep);
             		InsertRow (str[0], str[1], str[2]);
-            		iRowCount++;
             	}
             	// else there is the size of the file:
             	else {
-            		panel.Height += 18 * iRowCount + 10;
+            		panel.Height = 18 * iRowCount + 30;
             		MessageBox.Show("Parsing data from \"" + data_filename + "\" was succeffully finished. " + s);
             	}
             }
@@ -148,8 +151,14 @@ namespace lab_1_GUI
 			proc.StartInfo.UseShellExecute = false; 
 			proc.StartInfo.RedirectStandardOutput = true;
             proc.Start ();
-            
 			MessageBox.Show("Changes were saved successfully");
+		}
+		
+		// Adds row to a table
+		void But_addrowClick(object sender, EventArgs e){
+			MessageBox.Show("New row was added at the bottom of the table");
+			InsertRow("", "", "");
+			panel.Height += 18;
 		}
 	}
 }

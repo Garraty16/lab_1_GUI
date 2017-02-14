@@ -22,6 +22,7 @@ namespace lab_1_GUI
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox tb_executable_filename;
 		private System.Windows.Forms.Button but_save;
+		private System.Windows.Forms.Button but_addrow;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -51,6 +52,7 @@ namespace lab_1_GUI
 			this.label2 = new System.Windows.Forms.Label();
 			this.tb_executable_filename = new System.Windows.Forms.TextBox();
 			this.but_save = new System.Windows.Forms.Button();
+			this.but_addrow = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// but_start
@@ -132,12 +134,24 @@ namespace lab_1_GUI
 			this.but_save.UseVisualStyleBackColor = true;
 			this.but_save.Click += new System.EventHandler(this.But_saveClick);
 			// 
+			// but_addrow
+			// 
+			this.but_addrow.AutoEllipsis = true;
+			this.but_addrow.Location = new System.Drawing.Point(598, 108);
+			this.but_addrow.Name = "but_addrow";
+			this.but_addrow.Size = new System.Drawing.Size(75, 23);
+			this.but_addrow.TabIndex = 7;
+			this.but_addrow.Text = "Add Row";
+			this.but_addrow.UseVisualStyleBackColor = true;
+			this.but_addrow.Click += new System.EventHandler(this.But_addrowClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(677, 538);
+			this.Controls.Add(this.but_addrow);
 			this.Controls.Add(this.but_save);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.tb_executable_filename);
